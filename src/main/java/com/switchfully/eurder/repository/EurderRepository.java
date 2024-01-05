@@ -9,7 +9,5 @@ import java.util.*;
 
 @Repository
 public interface EurderRepository extends JpaRepository<Eurder, Long>  {
-    List<Eurder> findAllByCustomerId(Long customerId);
-    List<Eurder> findAllByEurderItemGroups_shippingDate(LocalDate shippingDate);
-
+    List<Eurder> findById(long id);
 }

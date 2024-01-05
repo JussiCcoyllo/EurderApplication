@@ -1,7 +1,7 @@
 package com.switchfully.eurder.controller;
 
-import com.switchfully.eurder.dto.CreateCustomerDto;
-import com.switchfully.eurder.dto.CustomerDto;
+import com.switchfully.eurder.dto.customerDto.CreateCustomerDto;
+import com.switchfully.eurder.dto.customerDto.CustomerDto;
 import com.switchfully.eurder.service.AdminService;
 import com.switchfully.eurder.service.CustomerService;
 import jakarta.validation.Valid;

@@ -12,15 +12,14 @@ public class Eurder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "ID")
     private Long id;
-    @OneToOne
-    @JoinColumn(name="ID_CUSTOMER")
-    private Customer customer;
+    @Column(name="ID_CUSTOMER")
+    private Long idCustomer;
     @OneToMany(cascade = {CascadeType.PERSIST}, orphanRemoval = true)
     @JoinColumn(name="ID_EURDER")
     private List<ItemGroup> itemGroups;
-    @Column(name = "PRICE")
+    @Column(name = "TOTAL_PRICE")
     private double totalPrice;
+    @Column(name="ORDER_DATE")
+    private LocalDate orderDate;
 
-    public Eurder(Long id, String address, LocalDate eurderDate, List<ItemGroup> itemGroups) {
-    }
 }

@@ -1,6 +1,6 @@
 package com.switchfully.eurder.service;
 
-import com.switchfully.eurder.dto.*;
+import com.switchfully.eurder.dto.customerDto.*;
 import com.switchfully.eurder.entity.*;
 import com.switchfully.eurder.exception.*;
 import com.switchfully.eurder.mapper.CustomerMapper;

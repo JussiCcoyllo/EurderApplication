@@ -20,7 +20,4 @@ public class Item {
     @Column(name="STOCK_AMOUNT")
     private Integer stockAmount;
 
-
-    public Item(String name, String description, Double price, Integer amount) {
-    }
 }

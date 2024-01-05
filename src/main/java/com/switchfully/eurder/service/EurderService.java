@@ -1,6 +1,6 @@
 package com.switchfully.eurder.service;
 
-import com.switchfully.eurder.dto.*;
+import com.switchfully.eurder.dto.eurderDto.*;
 import com.switchfully.eurder.entity.*;
 import com.switchfully.eurder.mapper.ItemGroupMapper;
 import com.switchfully.eurder.mapper.EurderMapper;
@@ -9,8 +9,6 @@ import com.switchfully.eurder.repository.ItemRepository;
 import jakarta.transaction.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 
 @Service
@@ -26,6 +24,6 @@ public class EurderService {
     private ItemRepository itemRepository;
 
 
-
-
+    public Eurder createEurder(Customer customer, CreateEurderDto createEurderDto) {
+    }
 }

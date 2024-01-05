@@ -1,5 +1,6 @@
-package com.switchfully.eurder.dto;
+package com.switchfully.eurder.dto.eurderDto;
 
+import com.switchfully.eurder.dto.itemGroupDto.*;
 import jakarta.validation.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -9,7 +10,7 @@ import java.util.List;
 @Data
 public class CreateEurderDto {
     @Valid
-    private final List<CreateEurderItemGroupDto> createEurderItemGroupDtos;
+    private final List<CreateItemGroupDto> createItemGroupDtoList;
     @NotNull
     private final LocalDate eurderDate;
 

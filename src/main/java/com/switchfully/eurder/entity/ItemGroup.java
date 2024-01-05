@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name="EURDER_ITEM_GROUP")
+@Table(name="ITEM_GROUP")
 public class ItemGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +24,8 @@ public class ItemGroup {
     private Integer amount;
     @Column(name="SHIPPING_DATE")
     private LocalDate shippingDate;
+
+    private static final int SHIPPING_DATE_WAITING_TIME_IN_STOCK = 1;
+    private static final int SHIPPING_DATE_WAITING_TIME_NOT_IN_STOCK = 7;
 
 }

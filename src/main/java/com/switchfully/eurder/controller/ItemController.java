@@ -1,7 +1,7 @@
 package com.switchfully.eurder.controller;
 
-import com.switchfully.eurder.dto.CreateItemDto;
-import com.switchfully.eurder.dto.ItemDto;
+import com.switchfully.eurder.dto.itemDto.CreateItemDto;
+import com.switchfully.eurder.dto.itemDto.ItemDto;
 import com.switchfully.eurder.service.AdminService;
 import com.switchfully.eurder.service.ItemService;
 import jakarta.validation.Valid;
@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @Validated
@@ -42,5 +41,6 @@ public class ItemController {
     public List<ItemDto> getItems() {
         return itemService.findAllItems();
     }
+
 
 }

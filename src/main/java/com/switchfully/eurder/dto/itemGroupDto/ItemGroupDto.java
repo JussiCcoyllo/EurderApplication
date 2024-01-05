@@ -1,11 +1,11 @@
-package com.switchfully.eurder.dto;
+package com.switchfully.eurder.dto.itemGroupDto;
 
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.UUID;
+
 @Data
-public class EurderItemGroupDto {
+public class ItemGroupDto {
     private Long id;
     private String itemName;
     private Double itemPrice;

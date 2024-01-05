@@ -1,4 +1,4 @@
-package com.switchfully.eurder.dto;
+package com.switchfully.eurder.dto.itemDto;
 
 import jakarta.validation.constraints.*;
 import lombok.*;

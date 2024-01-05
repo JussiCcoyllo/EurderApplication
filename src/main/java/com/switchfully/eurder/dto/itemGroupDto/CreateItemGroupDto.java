@@ -1,13 +1,12 @@
-package com.switchfully.eurder.dto;
+package com.switchfully.eurder.dto.itemGroupDto;
 
 
 
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-import java.util.UUID;
 @Data
-public class CreateEurderItemGroupDto {
+public class CreateItemGroupDto {
     @NotNull
     private Long id_item;
     @NotNull
