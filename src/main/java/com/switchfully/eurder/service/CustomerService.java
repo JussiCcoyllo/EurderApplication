@@ -40,17 +40,20 @@ public class CustomerService {
     }
     public CustomerDto createCustomer(CreateCustomerDto createCustomerDto) {
         createCustomerDto.setPassword(bCryptPasswordEncoder.encode(createCustomerDto.getPassword()));
-        Customer customer =  customerMapper.mapCreateCustomerDtoToCustomer(createCustomerDto);
+        Customer customer =  customerMapper.createCustomerDtoToCustomer(createCustomerDto);
 
-        return customerMapper.mapCustomerToCustomerDto(customerRepository.save(customer));
+        return customerMapper.customerToCustomerDto(customerRepository.save(customer));
     }
     public CustomerDto findById(Long id) {
         Customer customer = customerRepository.findById(id).orElseThrow(CustomerIdNotFoundException::new);
 
-        return customerMapper.mapCustomerToCustomerDto(customer);
+        return customerMapper.customerToCustomerDto(customer);
     }
 
     public List<CustomerDto> findAllCustomers() {
-        return customerRepository.findAll().stream().map(customerMapper::mapCustomerToCustomerDto).collect(Collectors.toList());
+        List<Customer> customers = customerRepository.findAll();
+        return customers.stream()
+                .map(CustomerMapper.INSTANCE::customerToCustomerDto)
+                .collect(Collectors.toList());
     }
 }

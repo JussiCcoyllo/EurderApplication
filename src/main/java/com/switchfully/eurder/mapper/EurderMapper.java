@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Mapper
+@Mapper(componentModel = "spring", uses = {ItemGroupMapper.class})
 public interface EurderMapper {
 
     EurderMapper INSTANCE = Mappers.getMapper(EurderMapper.class);
