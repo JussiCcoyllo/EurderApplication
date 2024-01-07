@@ -39,11 +39,9 @@ public class ItemService {
         return itemMapper.itemToItemDto(item);
     }
 
-    public void updateItem(Long itemId, UpdateItemDto updateItemDto) {
-        Optional<Item> optionalItem = itemRepository.findById(itemId);
-        optionalItem.ifPresent(item -> {
-            ItemMapper.INSTANCE.updateItemDtoToItem(updateItemDto, item);
-            itemRepository.save(item);
-        });
+    public ItemDto updateItem(Long id, UpdateItemDto updateItemDto) throws ItemIdNotFoundException {
+        Item item = ItemMapper.INSTANCE.updateItemDtoToItem(updateItemDto, itemRepository.findById(id).orElseThrow(ItemIdNotFoundException::new));
+        return itemMapper.itemToItemDto(itemRepository.save(item));
     }
+
 }

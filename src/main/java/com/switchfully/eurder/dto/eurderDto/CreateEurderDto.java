@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class CreateEurderDto {
     @Valid
-    private final List<CreateItemGroupDto> createItemGroupDtoList;
+    private final List<CreateItemGroupDto> itemGroupList;
     @NotNull
     private final LocalDate eurderDate;
 

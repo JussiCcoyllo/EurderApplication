@@ -4,6 +4,8 @@ import com.switchfully.eurder.dto.customerDto.*;
 import com.switchfully.eurder.entity.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.*;
+import org.springframework.stereotype.*;
+
 
 @Mapper(componentModel = "spring")
 public interface CustomerMapper {

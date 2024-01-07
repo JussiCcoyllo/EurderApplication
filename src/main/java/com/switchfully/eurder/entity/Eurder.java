@@ -7,6 +7,7 @@ import java.time.*;
 import java.util.List;
 @Data
 @Entity
+@Table(name="EURDER")
 public class Eurder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +22,6 @@ public class Eurder {
     private double totalPrice;
     @Column(name="ORDER_DATE")
     private LocalDate orderDate;
+
 
 }

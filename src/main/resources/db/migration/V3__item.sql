@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS eurder
     total_price FLOAT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS eurder_item_group
+CREATE TABLE IF NOT EXISTS item_group
 (
     id SERIAL PRIMARY KEY,
     amount INT DEFAULT NULL,

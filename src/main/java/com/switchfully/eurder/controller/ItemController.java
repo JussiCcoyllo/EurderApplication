@@ -1,7 +1,6 @@
 package com.switchfully.eurder.controller;
 
-import com.switchfully.eurder.dto.itemDto.CreateItemDto;
-import com.switchfully.eurder.dto.itemDto.ItemDto;
+import com.switchfully.eurder.dto.itemDto.*;
 import com.switchfully.eurder.service.AdminService;
 import com.switchfully.eurder.service.ItemService;
 import jakarta.validation.Valid;
@@ -32,15 +31,21 @@ public class ItemController {
     }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ItemDto getItem(@PathVariable Long id) {
-        return itemService.finById(id);
+    public ItemDto findById(@PathVariable Long id) {
+        return itemService.findById(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ItemDto> getItems() {
+    public List<ItemDto> findAllItems() {
         return itemService.findAllItems();
     }
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ItemDto updateItem(@RequestHeader String email, @RequestHeader String password, @PathVariable Long id, @Valid @RequestBody UpdateItemDto updateItemDto) {
+        adminService.checkIfIsAdmin(email, password);
 
+        return itemService.updateItem(id, updateItemDto);
+    }
 
 }

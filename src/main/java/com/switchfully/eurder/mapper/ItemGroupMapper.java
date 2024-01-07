@@ -5,6 +5,8 @@ import com.switchfully.eurder.entity.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.*;
 
+import java.time.*;
+
 @Mapper(componentModel = "spring")
 public interface ItemGroupMapper {
 
@@ -12,10 +14,10 @@ public interface ItemGroupMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "idItem", source = "idItem")
-    @Mapping(target = "itemName", ignore = true) // Assuming you don't want to map itemName explicitly
-    @Mapping(target = "itemPrice", ignore = true) // Assuming you don't want to map itemPrice explicitly
-    @Mapping(target = "shippingDate", ignore = true) // Assuming you don't want to map shippingDate explicitly
-    ItemGroup createItemGroupDtoToItemGroup(CreateItemGroupDto createItemGroupDto);
+    @Mapping(target = "itemName", ignore = true)
+    @Mapping(target = "itemPrice", ignore = true)
+    @Mapping(target = "shippingDate", ignore = true)
+    ItemGroup createItemGroupDtoToItemGroup(Item item, CreateItemGroupDto createItemGroupDto, LocalDate shippingDate);
 
 
 }
