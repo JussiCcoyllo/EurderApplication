@@ -4,6 +4,9 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CreateCustomerDto {
     private Long id;
     @NotBlank

@@ -3,8 +3,7 @@ package com.switchfully.eurder.controller;
 import com.switchfully.eurder.dto.eurderDto.*;
 import com.switchfully.eurder.entity.*;
 import com.switchfully.eurder.repository.CustomerRepository;
-import com.switchfully.eurder.service.CustomerService;
-import com.switchfully.eurder.service.EurderService;
+import com.switchfully.eurder.service.*;
 import jakarta.validation.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
@@ -23,6 +22,8 @@ public class EurderController {
     private EurderService eurderService;
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private AdminService adminService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -32,9 +33,10 @@ public class EurderController {
     }
 
     @GetMapping
-    public List<EurderDto> findAllOrdersForCustomer(@RequestHeader String email, @RequestHeader String password) {
+    public List<EurderDto> getEurders(@RequestHeader String email, @RequestHeader String password) {
         Customer customer = customerService.checkIfIsCustomer(email, password);
 
-        return eurderService.findAllOrdersForCustomer(customer);
+        return eurderService.getEurders();
     }
+
 }

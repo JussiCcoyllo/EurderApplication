@@ -14,7 +14,7 @@ public interface CustomerMapper {
     CustomerDto customerToCustomerDto(Customer customer);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "password", ignore = true) // Do not map password from CreateCustomerDto
+    @Mapping(target = "password", ignore = true)
     Customer createCustomerDtoToCustomer(CreateCustomerDto createCustomerDto);
 
     @Mapping(target = "id", ignore = true)

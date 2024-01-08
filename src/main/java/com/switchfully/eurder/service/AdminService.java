@@ -4,12 +4,12 @@ import com.switchfully.eurder.entity.*;
 import com.switchfully.eurder.exception.*;
 import com.switchfully.eurder.repository.AdminRepository;
 import jakarta.transaction.*;
+import lombok.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.Service;
-
+@RequiredArgsConstructor
 @Service
-@Transactional
 public class AdminService {
     @Autowired
     private AdminRepository adminRepository;

@@ -5,6 +5,9 @@ import lombok.*;
 
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CustomerDto {
     private Long id;
     private String firstName;

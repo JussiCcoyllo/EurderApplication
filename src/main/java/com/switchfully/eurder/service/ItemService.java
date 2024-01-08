@@ -6,12 +6,13 @@ import com.switchfully.eurder.exception.*;
 import com.switchfully.eurder.mapper.ItemMapper;
 import com.switchfully.eurder.repository.ItemRepository;
 import jakarta.transaction.*;
+import lombok.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.*;
-
+@RequiredArgsConstructor
 @Service
 @Transactional
 public class ItemService {

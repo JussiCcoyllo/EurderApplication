@@ -10,6 +10,7 @@ import com.switchfully.eurder.mapper.EurderMapper;
 import com.switchfully.eurder.repository.EurderRepository;
 import com.switchfully.eurder.repository.ItemRepository;
 import jakarta.transaction.*;
+import lombok.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,8 @@ import java.time.*;
 import java.util.*;
 import java.util.stream.*;
 
-
+@RequiredArgsConstructor
 @Service
-@Transactional
 public class EurderService {
     @Autowired(required = true)
     private EurderMapper eurderMapper;
@@ -34,17 +34,18 @@ public class EurderService {
         Eurder eurder = eurderMapper.createEurderDtoToEurder(createEurderDto);
         return eurderMapper.eurderToEurderDto(eurderRepository.save(eurder));
     }
-    private List<ItemGroup> createItemGroupList(CreateEurderDto createEurderDto) {
-        return createEurderDto.getItemGroupList().stream()
-                .map(createItemGroupDto -> createItemGroup(createEurderDto, createItemGroupDto))
-                .toList();
-    }
     private ItemGroup createItemGroup(CreateEurderDto createEurderDto, CreateItemGroupDto createItemGroupDto) {
         Item item = itemRepository.findById(createItemGroupDto.getId_item()).orElseThrow(ItemIdNotFoundException::new);
         LocalDate shippingDate = calculateShippingDate(item, createItemGroupDto.getAmount(), createEurderDto.getEurderDate());
 
         return itemGroupMapper.createItemGroupDtoToItemGroup(item, createItemGroupDto, shippingDate);
     }
+    private List<ItemGroup> createItemGroupList(CreateEurderDto createEurderDto) {
+        return createEurderDto.getItemGroupList().stream()
+                .map(createItemGroupDto -> createItemGroup(createEurderDto, createItemGroupDto))
+                .toList();
+    }
+
 
     private LocalDate calculateShippingDate(Item item, Integer stockAmount, LocalDate eurderDate) {
         return (stockAmount > 0) ? LocalDate.now().plusDays(1) : LocalDate.now().plusDays(7);
@@ -60,8 +61,13 @@ public class EurderService {
         return eurderMapper.eurderToEurderDto(eurder);
     }
 
-    public List<EurderDto> findAllOrdersForCustomer(Customer customer) {
+    public List<EurderDto> findAllEurders(Customer customer) {
         return eurderRepository.findById(customer.getId()).stream().map(eurderMapper::eurderToEurderDto).collect(Collectors.toList());
+    }
+    public List<EurderDto> getEurders() {
+        return eurderRepository.findAll().stream()
+                .map(order -> eurderMapper.eurderToEurderDto(order))
+                .collect(Collectors.toList());
     }
 
 }

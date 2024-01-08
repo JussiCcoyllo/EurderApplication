@@ -1,7 +1,7 @@
 package com.switchfully.eurder.controller;
 
-import com.switchfully.eurder.dto.customerDto.CreateCustomerDto;
-import com.switchfully.eurder.dto.customerDto.CustomerDto;
+import com.switchfully.eurder.dto.customerDto.*;
+import com.switchfully.eurder.mapper.*;
 import com.switchfully.eurder.service.AdminService;
 import com.switchfully.eurder.service.CustomerService;
 import jakarta.validation.Valid;
@@ -20,6 +20,8 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private CustomerMapper customerMapper;
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
@@ -34,10 +36,16 @@ public class CustomerController {
         return customerService.findById(id);
     }
     @GetMapping
-    public List<CustomerDto> findAllCustomers(@RequestHeader String email, @RequestHeader String password) {
+    public List<CustomerDto> getAllCustomers(@RequestHeader String email, @RequestHeader String password) {
         adminService.checkIfIsAdmin(email, password);
 
         return customerService.findAllCustomers();
     }
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDto updateCustomer(@RequestHeader String email, @RequestHeader String password, @PathVariable Long id, @Valid @RequestBody UpdateCustomerDto updateCustomerDto) {
+        adminService.checkIfIsAdmin(email, password);
 
+        return customerService.updateCustomer(id, updateCustomerDto);
+    }
 }

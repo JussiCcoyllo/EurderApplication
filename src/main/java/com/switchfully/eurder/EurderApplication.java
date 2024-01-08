@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.*;
 import org.springframework.context.annotation.*;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.switchfully.eurder.mapper")
 public class EurderApplication {
 
 	public static void main(String[] args) {
