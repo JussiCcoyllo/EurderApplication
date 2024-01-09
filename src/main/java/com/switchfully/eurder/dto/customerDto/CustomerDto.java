@@ -5,9 +5,9 @@ import lombok.*;
 
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class CustomerDto {
     private Long id;
     private String firstName;
@@ -15,4 +15,5 @@ public class CustomerDto {
     private String email;
     private String phoneNumber;
     private String address;
+
 }

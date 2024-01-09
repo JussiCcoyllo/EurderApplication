@@ -1,6 +1,7 @@
 package com.switchfully.eurder.mapper;
 
 import com.switchfully.eurder.dto.eurderDto.*;
+import com.switchfully.eurder.dto.itemGroupDto.*;
 import com.switchfully.eurder.entity.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.*;
@@ -9,30 +10,30 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Mapper(componentModel = "spring", uses = {ItemGroupMapper.class})
-public interface EurderMapper {
+@Component
+public class EurderMapper{
 
-    EurderMapper INSTANCE = Mappers.getMapper(EurderMapper.class);
+    private final ItemGroupMapper itemGroupMapper;
 
-    EurderDto eurderToEurderDto(Eurder eurder);
+    public EurderMapper(ItemGroupMapper itemGroupMapper) {
+        this.itemGroupMapper = itemGroupMapper;
+    }
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "totalPrice", ignore = true)
-    @Mapping(target = "orderDate", ignore = true)
-    @Mapping(target = "itemGroups", source = "createEurderDtoList")
-    Eurder createEurderDtoToEurder(CreateEurderDto createEurderDto);
+    public  EurderDto eurderToEurderDto(Eurder eurder) {
+        List<ItemGroupDto> itemGroupDtos = eurder.getItemGroups()
+                .stream()
+                .map(itemGroupMapper::itemGroupToItemGroupDto)
+                .toList();
 
-    @Mapping(target = "totalPrice", ignore = true)
-    @Mapping(target = "orderDate", ignore = true)
-    @Mapping(target = "itemGroups", source = "reEurderDtoList")
-    void updateEurderDtoToEurder(ReEurderDto reEurderDto, @MappingTarget Eurder eurder);
+        return new EurderDto(eurder.getId(),
+                        eurder.getIdCustomer(),
+                        eurder.getTotalPrice(),
+                        eurder.getOrderDate());
+    }
+    public Eurder createEurderDtoToEurder(CreateEurderDto createEurderDto){
+        return null;
+    }
 
-    List<EurderDto> eurdersToEurderDtos(List<Eurder> eurders);
-
-    @Mapping(target = "createEurderDtoList", source = "itemGroups")
-    CreateEurderDto eurderToCreateEurderDto(Eurder eurder);
-
-    List<ReEurderDto> eurdersToReEurderDtos(List<Eurder> eurders);
 
 
 }

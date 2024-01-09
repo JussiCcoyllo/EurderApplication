@@ -5,6 +5,9 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemGroupDto {
     private Long id;
     private String itemName;

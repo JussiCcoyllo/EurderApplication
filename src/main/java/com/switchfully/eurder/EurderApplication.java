@@ -8,9 +8,9 @@ import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.*;
 import org.springframework.web.servlet.config.annotation.*;
 
-@EnableJpaRepositories(basePackages = {"com.switchfully.eurder.repository"})
-@SpringBootApplication(scanBasePackages = "com.switchfully.eurder.mapper")
-@EntityScan({"com.switchfully.eurder.entity"})
+//@EnableJpaRepositories(basePackages = {"com.switchfully.eurder.repository"})
+@SpringBootApplication//(scanBasePackages = "com.switchfully.eurder.mapper")
+//@EntityScan({"com.switchfully.eurder.entity"})
 @EnableWebMvc
 public class EurderApplication {
 

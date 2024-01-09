@@ -4,6 +4,9 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateItemDto {
     @NotBlank
     private String name;

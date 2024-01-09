@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 
 @Data
+
+@NoArgsConstructor
 @Entity
 @Table(name="ITEM_GROUP")
 public class ItemGroup {
@@ -28,4 +30,15 @@ public class ItemGroup {
     private static final int SHIPPING_DATE_WAITING_TIME_IN_STOCK = 1;
     private static final int SHIPPING_DATE_WAITING_TIME_NOT_IN_STOCK = 7;
 
+    public ItemGroup(Long id, Long idItem, String itemName, double itemPrice, Integer amount, LocalDate shippingDate) {
+        this.id = id;
+        this.idItem = idItem;
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
+        this.amount = amount;
+        this.shippingDate = shippingDate;
+    }
+
+    public ItemGroup(Long id, String name, Double price, Double price1, Integer amount, LocalDate shippingDate) {
+    }
 }

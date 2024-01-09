@@ -5,6 +5,9 @@ import lombok.*;
 import java.util.Objects;
 import java.util.UUID;
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemDto {
     private Long id;
     private String name;

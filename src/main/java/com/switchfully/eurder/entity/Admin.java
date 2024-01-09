@@ -5,6 +5,9 @@ import lombok.*;
 
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="ADMIN")
 public class Admin {

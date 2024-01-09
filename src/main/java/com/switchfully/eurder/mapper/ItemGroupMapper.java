@@ -2,22 +2,25 @@ package com.switchfully.eurder.mapper;
 
 import com.switchfully.eurder.dto.itemGroupDto.*;
 import com.switchfully.eurder.entity.*;
+import com.switchfully.eurder.exception.*;
+import com.switchfully.eurder.repository.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.*;
+import org.springframework.stereotype.*;
 
 import java.time.*;
 
-@Mapper(componentModel = "spring")
-public interface ItemGroupMapper {
+@Component
+public class ItemGroupMapper {
 
-    ItemGroupMapper INSTANCE = Mappers.getMapper(ItemGroupMapper.class);
-
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "idItem", source = "idItem")
-    @Mapping(target = "itemName", ignore = true)
-    @Mapping(target = "itemPrice", ignore = true)
-    @Mapping(target = "shippingDate", ignore = true)
-    ItemGroup createItemGroupDtoToItemGroup(Item item, CreateItemGroupDto createItemGroupDto, LocalDate shippingDate);
-
+    public ItemGroupDto itemGroupToItemGroupDto(ItemGroup itemGroup) {
+        return new ItemGroupDto(itemGroup.getIdItem(), itemGroup.getItemName(), itemGroup.getItemPrice(), itemGroup.getAmount(), itemGroup.getShippingDate(), itemGroup.calculateTotalPrice());
+    }
+    public ItemGroup createItemGroupDtoToItemGroup(Item item, CreateItemGroupDto createItemGroupDto, LocalDate shippingDate) {
+        return new ItemGroup(item.getId(), item.getName(), item.getPrice(), item.getPrice(), createItemGroupDto.getAmount(), shippingDate);
+    }
+    public CreateItemGroupDto itemGroupToCreateItemGroupDto(ItemGroup itemGroup) {
+        return new CreateItemGroupDto(itemGroup.getIdItem(), itemGroup.getAmount());
+    }
 
 }

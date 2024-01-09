@@ -8,10 +8,13 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateEurderDto {
     @Valid
-    private final List<CreateItemGroupDto> itemGroupList;
+    private  List<CreateItemGroupDto> itemGroupList;
     @NotNull
-    private final LocalDate eurderDate;
+    private  LocalDate eurderDate;
 
 }

@@ -15,15 +15,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.*;
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Service
 public class CustomerService {
-    @Autowired(required=true)
-    private  CustomerMapper customerMapper;
-    @Autowired(required=true)
-    private CustomerRepository customerRepository;
-    private  BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
+    private final CustomerMapper customerMapper;
+
+    private final  CustomerRepository customerRepository;
+    private final  BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+    public CustomerService(CustomerMapper customerMapper, CustomerRepository customerRepository) {
+        this.customerMapper = customerMapper;
+        this.customerRepository = customerRepository;
+    }
 
     public Customer checkIfIsCustomer(String email, String password) throws CustomerEmailNotFoundException {
         return checkIfPasswordIsValid(findByEmail(email),password);
@@ -54,14 +58,11 @@ public class CustomerService {
     }
 
     public List<CustomerDto> findAllCustomers() {
-        List<Customer> customers = customerRepository.findAll();
-        return customers.stream()
-                .map(CustomerMapper.INSTANCE::customerToCustomerDto)
-                .collect(Collectors.toList());
+        return customerRepository.findAll().stream().map(customerMapper::customerToCustomerDto).collect(Collectors.toList());
     }
 
     public CustomerDto updateCustomer(Long id, UpdateCustomerDto updateCustomerDto)  {
-        Customer customer = customerMapper.updateCustomerDtoToCustomer(updateCustomerDto, customerRepository.findById(id).orElseThrow(CustomerIdNotFoundException::new));
+        Customer customer = customerMapper.updateCustomerDtoToCustomer(customerRepository.findById(id).orElseThrow(CustomerIdNotFoundException::new), updateCustomerDto);
 
         return customerMapper.customerToCustomerDto(customerRepository.save(customer));
     }

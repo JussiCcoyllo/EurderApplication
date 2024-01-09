@@ -16,12 +16,18 @@ import java.util.List;
 @Validated
 @RequestMapping(path = "/customers")
 public class CustomerController {
-    @Autowired
+
     private CustomerService customerService;
-    @Autowired
+
     private AdminService adminService;
-    @Autowired
+
     private CustomerMapper customerMapper;
+
+    public CustomerController(CustomerService customerService, AdminService adminService, CustomerMapper customerMapper) {
+        this.customerService = customerService;
+        this.adminService = adminService;
+        this.customerMapper = customerMapper;
+    }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)

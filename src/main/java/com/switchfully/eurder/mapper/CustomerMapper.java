@@ -2,24 +2,39 @@ package com.switchfully.eurder.mapper;
 
 import com.switchfully.eurder.dto.customerDto.*;
 import com.switchfully.eurder.entity.*;
-import org.mapstruct.*;
-import org.mapstruct.factory.*;
-import org.springframework.context.annotation.*;
 import org.springframework.stereotype.*;
 
 
-@Mapper(componentModel = "spring")
-public interface CustomerMapper {
-    CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
+@Component
+public class CustomerMapper {
 
-    CustomerDto customerToCustomerDto(Customer customer);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "password", ignore = true)
-    Customer createCustomerDtoToCustomer(CreateCustomerDto createCustomerDto);
+   public CustomerDto customerToCustomerDto(Customer customer) {
+        return new CustomerDto(customer.getId(),
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getEmail(),
+                customer.getPhoneNumber(),
+                customer.getAddress());
+    }
 
-    @Mapping(target = "id", ignore = true)
-    Customer updateCustomerDtoToCustomer(UpdateCustomerDto updateCustomerDto, @MappingTarget Customer customer);
+    public Customer createCustomerDtoToCustomer(CreateCustomerDto createCustomerDto) {
+        return new Customer(createCustomerDto.getFirstName(),
+                createCustomerDto.getLastName(),
+                createCustomerDto.getEmail(),
+                createCustomerDto.getPassword(),
+                createCustomerDto.getPhoneNumber(),
+                createCustomerDto.getAddress());
+    }
 
+    public Customer updateCustomerDtoToCustomer(Customer customer, UpdateCustomerDto updateCustomerDto){
+                customer.setFirstName(updateCustomerDto.getFirstName());
+                customer.setLastName(updateCustomerDto.getLastName());
+                customer.setEmail(updateCustomerDto.getEmail());
+                customer.setPassword(updateCustomerDto.getPassword());
+                customer.setPhoneNumber(updateCustomerDto.getPhoneNumber());
+                customer.setAddress(updateCustomerDto.getAddress());
+        return customer;
+    }
 
 }

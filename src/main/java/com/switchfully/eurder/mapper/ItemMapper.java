@@ -4,19 +4,17 @@ import com.switchfully.eurder.dto.itemDto.*;
 import com.switchfully.eurder.entity.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.*;
+import org.springframework.stereotype.*;
 
-@Mapper(componentModel = "spring")
-public interface ItemMapper {
-
-    ItemMapper INSTANCE = Mappers.getMapper(ItemMapper.class);
+@Component
+public class ItemMapper {
 
     ItemDto itemToItemDto(Item item);
 
 
-    @Mapping(target = "id", ignore = true)
-    Item updateItemDtoToItem(UpdateItemDto updateItemDto, @MappingTarget Item item);
 
-    @Mapping(target = "id", ignore = true)
+    Item updateItemDtoToItem(UpdateItemDto updateItemDto
+
     Item createItemDtoToItem(CreateItemDto createItemDto);
 
 }

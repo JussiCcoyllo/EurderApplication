@@ -24,4 +24,15 @@ public class Customer {
     @Column(name="ADDRESS")
     private String address;
 
+    public Customer() {
+    }
+
+    public Customer(String firstName, String lastName, String email, String password, String phoneNumber, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
 }
