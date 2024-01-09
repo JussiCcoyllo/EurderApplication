@@ -21,14 +21,20 @@ import java.util.stream.*;
 @RequiredArgsConstructor
 @Service
 public class EurderService {
-    @Autowired(required = true)
+
     private EurderMapper eurderMapper;
-    @Autowired
+
     private EurderRepository eurderRepository;
-    @Autowired
     private ItemGroupMapper itemGroupMapper;
-    @Autowired
+
     private ItemRepository itemRepository;
+
+    public EurderService(EurderMapper eurderMapper, EurderRepository eurderRepository, ItemGroupMapper itemGroupMapper, ItemRepository itemRepository) {
+        this.eurderMapper = eurderMapper;
+        this.eurderRepository = eurderRepository;
+        this.itemGroupMapper = itemGroupMapper;
+        this.itemRepository = itemRepository;
+    }
 
     public EurderDto createEurder(Customer customer, CreateEurderDto createEurderDto) {
         Eurder eurder = eurderMapper.createEurderDtoToEurder(createEurderDto);

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="ITEM")
@@ -23,4 +21,18 @@ public class Item {
     @Column(name="STOCK_AMOUNT")
     private Integer stockAmount;
 
+    public Item(Long id, String name, String description, Double price, Integer stockAmount) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stockAmount = stockAmount;
+    }
+
+    public Item(String name, String description, Double price, Integer stockAmount) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stockAmount = stockAmount;
+    }
 }

@@ -14,8 +14,8 @@ import java.util.List;
 @Validated
 @RequestMapping(path = "/items")
 public class ItemController {
-    private ItemService itemService;
-    private AdminService adminService;
+    private final ItemService itemService;
+    private final AdminService adminService;
 
     public ItemController(ItemService itemService, AdminService adminService) {
         this.itemService = itemService;
@@ -32,15 +32,18 @@ public class ItemController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ItemDto findById(@PathVariable Long id) {
+
         return itemService.findById(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ItemDto> findAllItems() {
+
         return itemService.findAllItems();
     }
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    
+    @PutMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public ItemDto updateItem(@RequestHeader String email, @RequestHeader String password, @PathVariable Long id, @Valid @RequestBody UpdateItemDto updateItemDto) {
         adminService.checkIfIsAdmin(email, password);

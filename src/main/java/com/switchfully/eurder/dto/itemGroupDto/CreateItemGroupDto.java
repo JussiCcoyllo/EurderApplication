@@ -6,8 +6,6 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Data
-@Builder
-
 @NoArgsConstructor
 public class CreateItemGroupDto {
     @NotNull

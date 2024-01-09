@@ -27,6 +27,7 @@ public class EurderMapper{
 
         return new EurderDto(eurder.getId(),
                         eurder.getIdCustomer(),
+                        itemGroupDtos,
                         eurder.getTotalPrice(),
                         eurder.getOrderDate());
     }

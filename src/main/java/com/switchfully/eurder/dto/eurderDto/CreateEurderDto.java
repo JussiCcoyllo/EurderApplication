@@ -8,7 +8,6 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateEurderDto {

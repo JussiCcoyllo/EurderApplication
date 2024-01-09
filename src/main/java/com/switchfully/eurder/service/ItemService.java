@@ -28,10 +28,7 @@ public class ItemService {
 
 
     public List<ItemDto> findAllItems() {
-        List<Item> items = itemRepository.findAll();
-        return items.stream()
-                .map(ItemMapper.INSTANCE::itemToItemDto)
-                .collect(Collectors.toList());
+        return itemRepository.findAll().stream().map(itemMapper::itemToItemDto).collect(Collectors.toList());
     }
 
     public ItemDto findById(Long itemId) {
@@ -41,7 +38,8 @@ public class ItemService {
     }
 
     public ItemDto updateItem(Long id, UpdateItemDto updateItemDto) throws ItemIdNotFoundException {
-        Item item = ItemMapper.INSTANCE.updateItemDtoToItem(updateItemDto, itemRepository.findById(id).orElseThrow(ItemIdNotFoundException::new));
+        Item item = itemMapper.updateItemDtoToItem(itemRepository.findById(id).orElseThrow(ItemIdNotFoundException::new), updateItemDto);
+
         return itemMapper.itemToItemDto(itemRepository.save(item));
     }
 

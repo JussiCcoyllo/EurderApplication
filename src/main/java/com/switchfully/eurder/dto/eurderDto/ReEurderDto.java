@@ -6,7 +6,6 @@ import lombok.*;
 import java.time.*;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReEurderDto {

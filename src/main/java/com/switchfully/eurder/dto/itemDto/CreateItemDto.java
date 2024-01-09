@@ -4,8 +4,6 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 public class CreateItemDto {
     @NotBlank
@@ -17,5 +15,10 @@ public class CreateItemDto {
     @NotNull
     private Integer stockAmount;
 
-
+    public CreateItemDto(String name, String description, Double price, Integer stockAmount) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stockAmount = stockAmount;
+    }
 }
