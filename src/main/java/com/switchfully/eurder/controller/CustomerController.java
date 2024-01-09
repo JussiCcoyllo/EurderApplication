@@ -29,6 +29,7 @@ public class CustomerController {
         return customerService.createCustomer(createCustomerDto);
     }
 
+
     @GetMapping("/{id}")
     public CustomerDto getCustomerById(@RequestHeader String email, @RequestHeader String password, @PathVariable Long id) {
         adminService.checkIfIsAdmin(email, password);

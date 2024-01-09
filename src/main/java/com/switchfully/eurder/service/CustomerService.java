@@ -18,9 +18,9 @@ import java.util.stream.*;
 @RequiredArgsConstructor
 @Service
 public class CustomerService {
-    @Autowired
+    @Autowired(required=true)
     private  CustomerMapper customerMapper;
-
+    @Autowired(required=true)
     private CustomerRepository customerRepository;
     private  BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 

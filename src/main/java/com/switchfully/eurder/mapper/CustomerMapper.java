@@ -4,6 +4,7 @@ import com.switchfully.eurder.dto.customerDto.*;
 import com.switchfully.eurder.entity.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.*;
+import org.springframework.context.annotation.*;
 import org.springframework.stereotype.*;
 
 

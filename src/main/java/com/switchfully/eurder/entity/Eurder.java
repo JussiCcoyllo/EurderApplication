@@ -20,7 +20,7 @@ public class Eurder {
     private List<ItemGroup> itemGroups;
     @Column(name = "TOTAL_PRICE")
     private double totalPrice;
-    @Column(name="ORDER_DATE")
+    @Column(name="EURDER_DATE")
     private LocalDate orderDate;
 
 
