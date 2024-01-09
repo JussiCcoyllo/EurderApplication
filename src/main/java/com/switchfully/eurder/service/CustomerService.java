@@ -6,12 +6,14 @@ import com.switchfully.eurder.exception.*;
 import com.switchfully.eurder.mapper.CustomerMapper;
 import com.switchfully.eurder.repository.CustomerRepository;
 import jakarta.transaction.*;
+import jakarta.validation.*;
 import lombok.*;
 import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.annotation.*;
 import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.*;

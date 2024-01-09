@@ -16,14 +16,18 @@ import java.util.*;
 @Validated
 @RequestMapping(path = "/eurders")
 public class EurderController {
-    @Autowired
-    private CustomerService customerService;
-    @Autowired
-    private EurderService eurderService;
-    @Autowired
-    private CustomerRepository customerRepository;
-    @Autowired
-    private AdminService adminService;
+
+    private final CustomerService customerService;
+    private final EurderService eurderService;
+    private final CustomerRepository customerRepository;
+    private final AdminService adminService;
+
+    public EurderController(CustomerService customerService, EurderService eurderService, CustomerRepository customerRepository, AdminService adminService) {
+        this.customerService = customerService;
+        this.eurderService = eurderService;
+        this.customerRepository = customerRepository;
+        this.adminService = adminService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

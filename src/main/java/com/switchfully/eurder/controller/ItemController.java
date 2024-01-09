@@ -42,9 +42,9 @@ public class ItemController {
 
         return itemService.findAllItems();
     }
-    
-    @PutMapping(consumes = "application/json", produces = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ItemDto updateItem(@RequestHeader String email, @RequestHeader String password, @PathVariable Long id, @Valid @RequestBody UpdateItemDto updateItemDto) {
         adminService.checkIfIsAdmin(email, password);
 

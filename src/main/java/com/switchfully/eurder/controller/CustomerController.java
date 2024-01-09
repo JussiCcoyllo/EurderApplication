@@ -17,16 +17,14 @@ import java.util.List;
 @RequestMapping(path = "/customers")
 public class CustomerController {
 
-    private CustomerService customerService;
+    private final CustomerService customerService;
+    private final AdminService adminService;
 
-    private AdminService adminService;
 
-    private CustomerMapper customerMapper;
-
-    public CustomerController(CustomerService customerService, AdminService adminService, CustomerMapper customerMapper) {
+    public CustomerController(CustomerService customerService, AdminService adminService) {
         this.customerService = customerService;
         this.adminService = adminService;
-        this.customerMapper = customerMapper;
+
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
@@ -51,7 +49,7 @@ public class CustomerController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CustomerDto updateCustomer(@RequestHeader String email, @RequestHeader String password, @PathVariable Long id, @Valid @RequestBody UpdateCustomerDto updateCustomerDto) {
-        adminService.checkIfIsAdmin(email, password);
+        customerService.checkIfIsCustomer(email, password);
 
         return customerService.updateCustomer(id, updateCustomerDto);
     }
